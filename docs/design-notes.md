@@ -86,6 +86,20 @@ Windows 文档的 260 是**含结尾 `\0` 的缓冲长度**，可用字符是 25
 `{ubuntu, windows} × {3.9, 3.12}`：低版本保证语法兼容，高版本保证未来兼容，两个平台
 保证不出现"只在某个平台成立"的假设。
 
+**实际状态（别读成"矩阵已经绿了"）**：本机只实测过 Windows + Python 3.12 一组，
+`Ran 61 tests` — OK。工作流定义随仓库提供在 `ci/github-actions.yml`，但没有启用为
+`.github/workflows/ci.yml`——首次推送所用凭据只有 `repo` scope，GitHub 拒绝该路径：
+
+```
+refusing to allow an OAuth App to create or update workflow
+'.github/workflows/ci.yml' without 'workflow' scope
+```
+
+通过 Contents API 写入时表现为 `PUT .../contents/.github/workflows/ci.yml -> 404`
+（同一批文件换成 `ci/github-actions.yml` 就返回 201）。所以「CI 绿了」是假的，
+「定义齐了、启用被凭据卡住」是真的。启用方法：把文件移回 `.github/workflows/`，
+用具备 `workflow` scope 的凭据推一次。
+
 ## 6. 已知限制
 
 - `atomic_replace()` 只处理单文件；整目录替换需要调用方自行保证顺序。
