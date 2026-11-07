@@ -108,7 +108,8 @@ src/safepath/      实现（errors / sanitize / join / collision / fsops / cli�
 tests/             61 项 unittest，覆盖正常、边界与 Windows 特有路径
 examples/          可独立运行的示例脚本
 docs/              设计取舍与故障复盘
-.github/           CI（ubuntu + windows × py3.9/3.12）与 issue/PR 模板
+ci/                  GitHub Actions 工作流定义（ubuntu + windows × py3.9/3.12）
+.github/             issue / PR 模板
 ```
 
 ## 测试
@@ -118,8 +119,19 @@ python -m pip install -e .
 python -m unittest discover -s tests -v
 ```
 
-不依赖 pytest，也不联网。CI 在 Ubuntu 与 Windows 两个平台、Python 3.9 与 3.12 上
-各跑一遍——因为这个库存在的理由就是"某个平台会挂"。
+不依赖 pytest，也不联网。本机唯一实测过的组合是 **Windows + Python 3.12**
+（`Ran 61 tests` — OK）；其余组合没有被跑过，因此不作宣称。
+
+跨平台部分由随仓库提供的工作流定义兜住：`ci/github-actions.yml`，矩阵
+`{ubuntu-latest, windows-latest} × {3.9, 3.12}`，跑
+`python -m unittest discover -s tests -v` 与 CLI 冒烟。它**没有**被启用成
+`.github/workflows/ci.yml`——推送凭据只有 `repo` scope，GitHub 直接拒写该路径
+（`refusing to allow an OAuth App to create or update workflow ... without 'workflow' scope`）。
+启用只需一步：
+
+```bash
+mkdir -p .github/workflows && git mv ci/github-actions.yml .github/workflows/ci.yml
+```
 
 ## 版本与变更
 
