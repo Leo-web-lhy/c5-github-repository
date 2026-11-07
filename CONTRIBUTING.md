@@ -38,7 +38,8 @@
    python -m safepath sanitize "a/b:c?.txt"
    ```
 
-5. 开 PR，用 PR 模板填"改了什么 / 为什么 / 怎么验证"。CI 必须绿。
+5. 开 PR，用 PR 模板填「改了什么 / 为什么 / 怎么验证」。
+   `python -m unittest discover -s tests -v` 必须全绿；CI 启用后（见 README「测试」一节）同样必须绿。
 
 ## 代码约定
 
