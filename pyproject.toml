@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "safepath"
+version = "1.0.0"
+description = "Cross-platform safe path handling: filename sanitizing, traversal-proof joins, case/normalization collision detection, and read-only-aware atomic replace."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Leo-web-lhy" }]
+keywords = ["filesystem", "paths", "windows", "unicode", "cross-platform", "security"]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Topic :: System :: Filesystems",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = []
+
+[project.scripts]
+safepath = "safepath.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/Leo-web-lhy/c5-github-repository"
+Source = "https://github.com/Leo-web-lhy/c5-github-repository"
+Changelog = "https://github.com/Leo-web-lhy/c5-github-repository/blob/main/CHANGELOG.md"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
