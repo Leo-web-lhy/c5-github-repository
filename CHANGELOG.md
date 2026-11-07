@@ -35,7 +35,8 @@
 - 命令行 `python -m safepath {sanitize,join,collide,length}`，支持 `--json`，
   退出码 `0` 通过 / `1` 有问题 / `2` 输入非法。
 - 专用异常层次：`SafePathError` → `UnsafePathError` / `InvalidNameError`。
-- 61 项 `unittest` 测试，CI 覆盖 Ubuntu 与 Windows × Python 3.9 / 3.12。
+- 61 项 `unittest` 测试，本机 Windows + Python 3.12 实跑通过；跨平台工作流定义见
+  `ci/github-actions.yml`（未启用，原因见 README「测试」一节）。
 
 ### 说明
 
