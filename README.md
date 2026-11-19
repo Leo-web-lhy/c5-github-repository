@@ -110,6 +110,8 @@ examples/          可独立运行的示例脚本
 docs/              设计取舍与故障复盘
 ci/                  GitHub Actions 工作流定义（ubuntu + windows × py3.9/3.12）
 .github/             issue / PR 模板
+AI_LOG.md            AI 协作记录：分工、返工、哪些说法有实测支撑
+ATTRIBUTION.md       来源与归属：第三方依赖、规范参考、AI 生成部分说明
 ```
 
 ## 测试
@@ -143,6 +145,13 @@ mkdir -p .github/workflows && git mv ci/github-actions.yml .github/workflows/ci.
 欢迎 issue 与 PR，请先读 [CONTRIBUTING.md](CONTRIBUTING.md)：它写明了分支命名、
 提交信息格式、测试要求和评审标准。提交问题时请用模板，附上操作系统与 Python 版本
 ——很多问题只在某一平台上出现。
+
+## AI 使用与来源
+
+这个仓库的代码、测试与文档主要由 AI 生成，人负责选题方向、账号授权、是否发布，
+以及逐条核对"写下的行为描述是否真的跑过"。逐环节分工、返工记录与已知边界见
+[AI_LOG.md](AI_LOG.md)；第三方依赖情况、规范参考与 AI 生成部分的范围见
+[ATTRIBUTION.md](ATTRIBUTION.md)。
 
 ## 许可证
 
