@@ -120,3 +120,20 @@ Windows + Python 3.12 当事实。评审点开 Actions 页即可验证，因此�
 
 其余环节（需求解析、设计、编码、测试、文档、验证、建仓推送、一致性校验）由 AI 完成，
 每一步都有可复现的验证记录。
+
+## 第二轮返修与提交（2026-11-19）
+
+上一版被平台退回 `needs_revision` 两次，且平台未提供任何评语。因此这一轮不是按评语修补，
+而是按 rubric 红旗项（缺少交付物 / 无 AI 日志 / 一次性使用 AI）反向自查实体文件，补上了
+本文件与 `ATTRIBUTION.md`，并重算了一致性口径（25 → 27 个受控文件）。
+
+| 环节 | 记录 |
+| --- | --- |
+| 推送方式 | GitHub REST Contents API（`repo` scope）：新建 `AI_LOG.md` / `ATTRIBUTION.md` 各 `201`，更新 `README.md` `200` |
+| 远端核验 | 逐文件按 git blob 规则算 SHA-1 与远端 tree 对撞：`MATCH=27 RAW_DIFF=0 ONLY_LOCAL=0 ONLY_REMOTE=0` |
+| 提交前复核 | `.scratch/verify_c5_round2.py` 可复跑；任何人 clone 后都能自行核对 |
+| 提交结果 | 任务 `task-20261119060546-91ad06e9` 终态 `completed`，`submissionId=sub-20261119060623-0c5f53d0`，`pendingReview=true` |
+| AI 初评 | 提交时 `NOT_FOUND`（异步回填），此处不预填分数 |
+
+仍未解决、也不打算掩饰的两点：CI 工作流**已定义未启用**（本机凭据缺 `workflow` scope，
+推送被 GitHub 拒绝）；跨平台正确性只有 Windows + Python 3.12.13 的实测证据。
